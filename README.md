@@ -32,19 +32,25 @@ This microservice ingests hotel review data (in .jl format) from an AWS S3 bucke
   Create .env file:
 
    AWS_ACCESS_KEY=your_aws_access_key
+   
    AWS_SECRET_KEY=your_aws_secret_key
+   
    AWS_BUCKET_NAME=zuzu-review-bucket
+   
    S3_PREFIX=reviews/
+   
    DB_URI=postgresql://user:password@db/review_db
 
   Build and run using docker :
 
    docker build -t review-service .
+   
    docker run --env-file .env review-service
 
    Runnning Tests:
 
    pip install -r requirements.txt
+   
    pytest tests/
 
   Design Decisions:
