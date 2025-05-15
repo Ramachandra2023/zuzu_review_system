@@ -3,7 +3,7 @@ ZuZu review system microservice
 
 This microservice ingests hotel review data (in .jl format) from an AWS S3 bucket, processes and validates it, and stores it into a relational database (PostgreSQL or MySQL). Designed with modularity, error handling, and scalability in mind.
 
-   **Features:**
+   Features:
 
    ✅ Connects to AWS S3 and downloads .jl review files
 
@@ -19,14 +19,17 @@ This microservice ingests hotel review data (in .jl format) from an AWS S3 bucke
 
    ✅ Logs errors and activity to console
 
-  ** Setup Intructions:**
+  Setup Intructions:
 
-  ** Clone Project :**
-   git clone https://github.com/your-username/zuzu_review_system.git
-   cd zuzu_review_system
+  Clone Project :
+  
+  git clone https://github.com/your-username/zuzu_review_system.git
+  
+  cd zuzu_review_system
 
-   **Configure Environment Variables:**
-   Create .env file:
+  Configure Environment Variables:
+   
+  Create .env file:
 
    AWS_ACCESS_KEY=your_aws_access_key
    AWS_SECRET_KEY=your_aws_secret_key
@@ -34,7 +37,7 @@ This microservice ingests hotel review data (in .jl format) from an AWS S3 bucke
    S3_PREFIX=reviews/
    DB_URI=postgresql://user:password@db/review_db
 
-  ** Build and run using docker :**
+  Build and run using docker :
 
    docker build -t review-service .
    docker run --env-file .env review-service
@@ -44,7 +47,7 @@ This microservice ingests hotel review data (in .jl format) from an AWS S3 bucke
    pip install -r requirements.txt
    pytest tests/
 
-  ** Design Decisions:**
+  Design Decisions:
 
    Idempotency: Implemented using a processed_files DB table to track completed files.
 
@@ -52,7 +55,7 @@ This microservice ingests hotel review data (in .jl format) from an AWS S3 bucke
 
    Extensibility: Designed to add multilingual support, rating systems, and new platforms easily.
 
-   **Assumptions:**
+   Assumptions:
 
    Each .jl file represents one full day’s reviews from one platform.
 
