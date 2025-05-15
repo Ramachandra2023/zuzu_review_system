@@ -1,3 +1,7 @@
 boto3
 sqlalchemy
 psycopg2-binary
+pika
+redis
+pytest
+python-dotenv
