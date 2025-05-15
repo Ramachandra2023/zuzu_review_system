@@ -1,75 +1,34 @@
-# zuzu_review_system
-ZuZu review system microservice 
+This microservice ingests hotel review data from AWS S3, processes it asynchronously using RabbitMQ, stores it in a relational database, and caches recent data in Redis for fast access.
 
-This microservice ingests hotel review data (in .jl format) from an AWS S3 bucket, processes and validates it, and stores it into a relational database (PostgreSQL or MySQL). Designed with modularity, error handling, and scalability in mind.
+Features
 
-   Features:
+1) Fetches daily .jl review files from AWS S3.
 
-   ✅ Connects to AWS S3 and downloads .jl review files
+2) Validates and parses JSON Lines review data.
 
-   ✅ Parses JSON Lines and validates review data
+3) Uses RabbitMQ for asynchronous, scalable processing.
 
-   ✅ Stores reviews in a relational database using SQLAlchemy ORM
+4) Stores reviews in PostgreSQL/MySQL using SQLAlchemy ORM.
 
-   ✅ Tracks processed files for idempotency (no duplicate processing)
+5) Caches recent reviews in Redis for quick retrieval.
 
-   ✅ Dockerized setup
+6) Tracks processed files to ensure idempotency.
 
-   ✅ Command-line or cron-job compatible
+7) Dockerized setup with multi-service orchestration via Docker Compose.
 
-   ✅ Logs errors and activity to console
+8) Unit tests included for core components.
 
-  Setup Intructions:
+Setup Instructions
 
-  Clone Project :
-  
-  git clone https://github.com/your-username/zuzu_review_system.git
-  
-  cd zuzu_review_system
+Prerequisites
 
-  Configure Environment Variables:
-   
-  Create .env file:
+1) Docker & Docker Compose installed
 
-   AWS_ACCESS_KEY=your_aws_access_key
-   
-   AWS_SECRET_KEY=your_aws_secret_key
-   
-   AWS_BUCKET_NAME=zuzu-review-bucket
-   
-   S3_PREFIX=reviews/
-   
-   DB_URI=postgresql://user:password@db/review_db
+2) AWS credentials with S3 read access
 
-  Build and run using docker :
+3) PostgreSQL or MySQL database accessible
 
-   docker build -t review-service .
-   
-   docker run --env-file .env review-service
+4) Redis server accessible
 
-   Runnning Tests:
-
-   pip install -r requirements.txt
-   
-   pytest tests/
-
-  Design Decisions:
-
-   Idempotency: Implemented using a processed_files DB table to track completed files.
-
-   ORM: SQLAlchemy ensures flexibility between PostgreSQL and MySQL.
-
-   Extensibility: Designed to add multilingual support, rating systems, and new platforms easily.
-
-   Assumptions:
-
-   Each .jl file represents one full day’s reviews from one platform.
-
-   The comment block is required and must include rating, reviewDate, and reviewComments.
-
-   Duplicate file processing is prevented via tracked filenames in DB.
-
-   
-
-
+Created .env
 
