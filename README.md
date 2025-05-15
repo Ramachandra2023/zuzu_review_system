@@ -30,5 +30,39 @@ Prerequisites
 
 4) Redis server accessible
 
-Created .env
+Configurations
+
+ Mentioned in .env
+
+Build and Run
+
+docker-compose up --build
+
+This starts:
+
+RabbitMQ (with management UI on port 15672)
+
+Redis (on port 6379)
+
+PostgreSQL (on port 5432)
+
+Producer service (uploads review lines to RabbitMQ)
+
+Consumer service (processes and stores reviews)
+
+Running Tests:
+
+pytest tests/
+
+Design Decisions
+
+1) Asynchronous Architecture: Decouples file reading and processing for scalability.
+
+2) Idempotency: Processed files are tracked in DB to prevent duplicates.
+
+3) Caching: Redis caches recent reviews for faster API responses.
+
+4) Dockerized: Easy deployment and local development.
+
+
 
